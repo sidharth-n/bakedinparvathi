@@ -4,7 +4,6 @@ import { Home, Coffee, Tent } from 'lucide-react';
 import { AnimatePresence } from 'framer-motion';
 
 import LandingPage from './views/LandingPage';
-import Hero from './components/Hero';
 import AltitudeScroll from './components/AltitudeScroll';
 import Cart from './components/Cart';
 import Menu from './views/Menu';
