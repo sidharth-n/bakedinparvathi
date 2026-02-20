@@ -9,6 +9,7 @@ import Cart from './components/Cart';
 import Menu from './views/Menu';
 import Stays from './views/Stays';
 import Treks from './views/Treks';
+import CartPage from './views/CartPage';
 
 // Bottom Navigation for Mobile / Fixed Top for Desktop
 const Navigation = () => {
@@ -43,11 +44,12 @@ const Navigation = () => {
 const AppLayout = ({ cart, setCart }) => {
   const location = useLocation();
   const isLanding = location.pathname === '/';
+  const isCartPage = location.pathname === '/cart';
 
   return (
-    <div className={`bg-[#0D1B2A] min-h-screen text-white ${!isLanding ? 'md:pt-16 pt-12' : ''}`}>
+    <div className={`bg-[#0D1B2A] min-h-screen text-white ${!isLanding && !isCartPage ? 'md:pt-16 pt-12' : ''}`}>
       {/* Only show navigation and global UI on the App tabs */}
-      {!isLanding && (
+      {!isLanding && !isCartPage && (
         <>
           <Navigation />
           <AltitudeScroll />
@@ -55,19 +57,20 @@ const AppLayout = ({ cart, setCart }) => {
       )}
 
       {/* Route Views */}
-      <div className={`relative z-30`}>
+      <div className={`relative z-30 ${isCartPage ? 'bg-[#0A1420]' : ''}`}>
         <AnimatePresence mode="wait">
           <Routes location={location} key={location.pathname}>
             <Route path="/" element={<LandingPage />} />
             <Route path="/menu" element={<Menu cart={cart} setCart={setCart} />} />
             <Route path="/stays" element={<Stays />} />
             <Route path="/treks" element={<Treks />} />
+            <Route path="/cart" element={<CartPage cart={cart} setCart={setCart} />} />
           </Routes>
         </AnimatePresence>
       </div>
 
       {/* Floating Cart & Checkout */}
-      {!isLanding && <Cart cart={cart} setCart={setCart} />}
+      {!isLanding && !isCartPage && <Cart cart={cart} setCart={setCart} />}
     </div>
   );
 };

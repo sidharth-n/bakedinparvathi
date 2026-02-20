@@ -135,23 +135,22 @@ const Menu = ({ cart, setCart }) => {
 
       {/* Floating Menu Category Button */}
       <motion.div 
-        initial={{ y: 50, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        className="fixed bottom-24 left-1/2 -translate-x-1/2 z-40"
+        initial={{ scale: 0, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        // Positioned bottom right. If cart is active (cart.length > 0), raise it above the cart banner.
+        className={`fixed right-6 z-40 transition-all duration-300 ${cart.length > 0 ? 'bottom-[100px]' : 'bottom-20 md:bottom-24'}`}
       >
         <button 
           onClick={() => setIsMenuModalOpen(true)}
-          className="bg-black/90 backdrop-blur-md text-white border border-white/20 px-6 py-3 rounded-full shadow-2xl flex items-center gap-2 hover:bg-black transition-colors font-body font-medium"
+          className="bg-black text-white border border-white/10 w-16 h-16 rounded-full shadow-2xl flex flex-col items-center justify-center gap-0.5 hover:bg-stone-900 transition-colors font-body focus:outline-none"
         >
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <line x1="8" y1="6" x2="21" y2="6"></line>
-            <line x1="8" y1="12" x2="21" y2="12"></line>
-            <line x1="8" y1="18" x2="21" y2="18"></line>
-            <line x1="3" y1="6" x2="3.01" y2="6"></line>
-            <line x1="3" y1="12" x2="3.01" y2="12"></line>
-            <line x1="3" y1="18" x2="3.01" y2="18"></line>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-gray-300">
+            <path d="M4 19h16" />
+            <path d="M4 15h16" />
+            <path d="M4 11h16" />
+            <path d="M4 7h16" />
           </svg>
-          Menu
+          <span className="text-[10px] font-bold tracking-wider text-gray-300">MENU</span>
         </button>
       </motion.div>
 
