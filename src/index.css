@@ -1,0 +1,47 @@
+@import "tailwindcss";
+
+@theme {
+  --color-forest: #1B3C35;
+  --color-forest-dark: #0D1E1A;
+  --color-bark: #5C4033;
+  --color-bark-light: #7A5746;
+  --color-stone: #EAE6DT; /* misty off-white for background */
+  --color-stone-dark: #2C2C2C;
+  --color-night: #0D1B2A;
+  --color-night-light: #1B263B;
+  
+  --font-display: "Permanent Marker", cursive;
+  --font-body: "Outfit", sans-serif;
+  --font-chalk: "Caveat", cursive;
+}
+
+/* Global styles for the app */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-body), sans-serif;
+  background-color: var(--color-stone);
+  color: var(--color-forest-dark);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Scrollbar hiding for the seamless app feel */
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+
+/* Typography classes we can reuse */
+.font-display { font-family: var(--font-display); }
+.font-chalk { font-family: var(--font-chalk); }
+
+/* The Chalkboard aesthetic for the menu containers */
+.chalkboard {
+  background-color: #2C2C2C;
+  background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23noise)' opacity='0.08'/%3E%3C/svg%3E");
+  color: #F8F9FA;
+  box-shadow: inset 0 0 40px rgba(0,0,0,0.6);
+  border: 8px solid var(--color-bark);
+  border-radius: 12px;
+}
