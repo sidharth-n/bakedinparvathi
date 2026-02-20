@@ -19,7 +19,7 @@ const AltitudeScroll = () => {
     if (value < 7800) return "Barshaini";
     if (value < 8100) return "Trail to Kalga";
     if (value < 8400) return "Kalga Village";
-    return "Baked in Parvathi";
+    return "Baked in Parvati";
   });
 
   return (

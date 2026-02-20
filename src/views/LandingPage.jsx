@@ -45,7 +45,7 @@ const LandingPage = () => {
             </h2>
             <div className="w-24 h-1 bg-amber-600 mb-8 rounded-full" />
             <p className="text-gray-300 text-lg md:text-xl leading-relaxed font-light mb-8">
-              Hidden deep within the apple orchards of Kalga village, accessible only by a scenic trek, baked in Parvathi is a high-altitude sanctuary for wanderers, artists, and peace-seekers.
+              Hidden deep within the apple orchards of Kalga village, accessible only by a scenic trek, baked in Parvati is a high-altitude sanctuary for wanderers, artists, and peace-seekers.
             </p>
             <p className="text-gray-400 text-base md:text-lg leading-relaxed font-light mb-8">
               We bake fresh wood-fired pizzas, brew the finest Himalayan teas, and offer cozy cottage stays under the clearest starry night skies you'll ever witness. Hosted with love by Chanpreet.
@@ -108,7 +108,7 @@ const LandingPage = () => {
         <div className="flex overflow-x-auto gap-6 px-4 md:px-12 pb-8 snap-x snap-mandatory scrollbar-hide" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
           {[
             { text: "Finding this place after a long trek was like finding heaven. The Walnut Brownies are out of this world. Chanpreet makes you feel like family the moment you step in.", author: "Gaurav Singh" },
-            { text: "The vibe here is unmatched. Sitting by the tandoor, eating wood-fired pizza while watching the snow fall over the Parvathi valley. Best stay in Kalga.", author: "Neha Malik" },
+            { text: "The vibe here is unmatched. Sitting by the tandoor, eating wood-fired pizza while watching the snow fall over the Parvati valley. Best stay in Kalga.", author: "Neha Malik" },
             { text: "A sanctuary. The WiFi is surprisingly fast if you need to work, but honestly, the scenery and the ginger honey lemon tea demand all your attention.", author: "Alex R." },
             { text: "If you want a true Himalayan experience, this is the place. The cottage was warm, and the starry sky at night was the clearest I've ever seen.", author: "Sarah W." }
           ].map((review, i) => (
@@ -143,7 +143,7 @@ const LandingPage = () => {
               <h3 className="text-4xl font-display text-white mb-6">Locate Us</h3>
               <p className="text-gray-300 flex items-start gap-4 mb-6">
                 <MapPin className="text-amber-500 shrink-0 mt-1" size={24} />
-                <span className="text-lg font-light">{cafeInfo.location}<br/>Parvathi Valley, 175105</span>
+                <span className="text-lg font-light">{cafeInfo.location}<br/>Parvati Valley, 175105</span>
               </p>
               <p className="text-gray-300 flex items-center gap-4">
                 <Phone className="text-amber-500 shrink-0" size={24} />
@@ -165,7 +165,7 @@ const LandingPage = () => {
 
         {/* Footer Deep content */}
         <div className="max-w-6xl mx-auto px-4 pt-32 md:pt-24 mt-32 md:mt-16 flex flex-col items-center">
-          <h2 className="text-5xl font-display text-white/20 mb-8">Baked in Parvathi</h2>
+          <h2 className="text-5xl font-display text-white/20 mb-8">Baked in Parvati</h2>
           
           <div className="flex gap-6 mb-12">
             <a href={cafeInfo.instagram} target="_blank" rel="noreferrer" className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-gray-400 hover:text-amber-500 hover:border-amber-500/50 transition-all">
@@ -177,7 +177,7 @@ const LandingPage = () => {
           </div>
 
           <p className="text-sm text-gray-600 font-mono">
-            &copy; {new Date().getFullYear()} Baked in Parvathi. High Altitude Bakery & Cafe.
+            &copy; {new Date().getFullYear()} Baked in Parvati. High Altitude Bakery & Cafe.
           </p>
         </div>
       </footer>

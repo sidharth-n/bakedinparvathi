@@ -145,7 +145,7 @@ export const experiences = [
 ];
 
 export const cafeInfo = {
-  name: "Baked in Parvathi",
+  name: "Baked in Parvati",
   phone: "918848663072", // Testing number for WhatsApp ordering (change to real number for production)
   contactPhone: "919643129553", // Real cafe contact number for display
   instagram: "https://www.instagram.com/bakedinparvati/?hl=en",

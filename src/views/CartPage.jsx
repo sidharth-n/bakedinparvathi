@@ -24,7 +24,7 @@ const CartPage = ({ cart, setCart }) => {
   const handleWhatsAppCheckout = () => {
     if (cart.length === 0) return;
 
-    let message = `*🏔️ Baked in Parvathi*\n`;
+    let message = `*🏔️ Baked in Parvati*\n`;
     message += `━━━━━━━━━━━━━━━\n\n`;
 
     cart.forEach(item => {
@@ -75,7 +75,7 @@ const CartPage = ({ cart, setCart }) => {
           <ArrowLeft size={24} className="text-gray-300" />
         </button>
         <div>
-          <h1 className="font-bold text-lg leading-tight tracking-wide">Baked in Parvathi</h1>
+          <h1 className="font-bold text-lg leading-tight tracking-wide">Baked in Parvati</h1>
           <p className="text-xs text-gray-400">Kalga Village, Parvati Valley</p>
         </div>
       </div>
