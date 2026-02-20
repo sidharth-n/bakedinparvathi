@@ -147,7 +147,7 @@ const LandingPage = () => {
               </p>
               <p className="text-gray-300 flex items-center gap-4">
                 <Phone className="text-amber-500 shrink-0" size={24} />
-                <span className="text-lg font-mono tracking-widest">+91 {cafeInfo.phone.slice(2)}</span>
+                <span className="text-lg font-mono tracking-widest">+91 {cafeInfo.contactPhone.slice(2)}</span>
               </p>
             </div>
             
@@ -156,7 +156,7 @@ const LandingPage = () => {
                <p className="text-base text-gray-400 leading-relaxed font-light mb-6">
                  From Barshaini Dam, cross the bridge and take the upward trail. It's a beautiful 30-45 minute hike through the woods to Kalga Village. Look for our signboards!
                </p>
-               <a href="https://maps.google.com" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 text-amber-400 hover:text-amber-300 font-bold transition-colors">
+               <a href={cafeInfo.gmap} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 text-amber-400 hover:text-amber-300 font-bold transition-colors">
                  Open in Google Maps <ArrowRight size={16} />
                </a>
             </div>
@@ -168,10 +168,10 @@ const LandingPage = () => {
           <h2 className="text-5xl font-display text-white/20 mb-8">Baked in Parvathi</h2>
           
           <div className="flex gap-6 mb-12">
-            <a href="#" className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-gray-400 hover:text-amber-500 hover:border-amber-500/50 transition-all">
+            <a href={cafeInfo.instagram} target="_blank" rel="noreferrer" className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-gray-400 hover:text-amber-500 hover:border-amber-500/50 transition-all">
               <Instagram size={20} />
             </a>
-            <a href={`https://wa.me/${cafeInfo.phone}`} className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-gray-400 hover:text-[#25D366] hover:border-[#25D366]/50 transition-all">
+            <a href={`https://wa.me/${cafeInfo.contactPhone}`} target="_blank" rel="noreferrer" className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-gray-400 hover:text-[#25D366] hover:border-[#25D366]/50 transition-all">
               <Phone size={20} />
             </a>
           </div>

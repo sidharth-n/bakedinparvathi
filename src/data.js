@@ -146,7 +146,10 @@ export const experiences = [
 
 export const cafeInfo = {
   name: "Baked in Parvathi",
-  phone: "919000000000", // Will be replaced by actual host number
+  phone: "918848663072", // Testing number for WhatsApp ordering (change to real number for production)
+  contactPhone: "919643129553", // Real cafe contact number for display
+  instagram: "https://www.instagram.com/bakedinparvati/?hl=en",
+  gmap: "https://maps.app.goo.gl/vmvZpMpNBVu7dgTD9",
   altitude: "8,500 ft",
   location: "Kalga, Himachal Pradesh"
 };
