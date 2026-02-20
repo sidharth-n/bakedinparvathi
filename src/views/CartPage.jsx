@@ -6,8 +6,9 @@ import { cafeInfo } from '../data';
 
 const CartPage = ({ cart, setCart }) => {
   const navigate = useNavigate();
-  const [orderType, setOrderType] = useState('Dine In'); // Dine In, Takeaway, Stay Delivery
+  const [orderType, setOrderType] = useState('Dine In');
   const [request, setRequest] = useState('');
+  const [customerName, setCustomerName] = useState('');
 
   const totalPrice = cart.reduce((acc, item) => acc + (item.price * item.qty), 0);
 
@@ -35,6 +36,9 @@ const CartPage = ({ cart, setCart }) => {
     message += `*Total: ₹${totalPrice}*\n\n`;
 
     message += `📋 *Order Type:* ${orderType}\n`;
+    if (customerName.trim()) {
+      message += `👤 *Name:* ${customerName.trim()}\n`;
+    }
     if (request) {
       message += `📝 *Note:* _${request}_\n`;
     }
@@ -124,6 +128,14 @@ const CartPage = ({ cart, setCart }) => {
         {/* Order Details & Delivery Type */}
         <div className="bg-white/5 border border-white/5 rounded-3xl p-5 shadow-lg space-y-5">
           <h3 className="font-bold text-sm uppercase tracking-wider text-gray-400">Order Information</h3>
+          
+          <input 
+            type="text" 
+            placeholder="Your name"
+            value={customerName}
+            onChange={(e) => setCustomerName(e.target.value)}
+            className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3.5 text-white text-sm focus:outline-none focus:border-amber-500/50 transition-colors placeholder:text-gray-500"
+          />
           
           <div className="grid grid-cols-3 gap-2">
             {[
