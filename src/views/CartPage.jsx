@@ -42,7 +42,12 @@ const CartPage = ({ cart, setCart }) => {
     if (request) {
       message += `📝 *Note:* _${request}_\n`;
     }
-    message += `\n_Sent via bakedinparvathi.vercel.app_`;
+
+    const now = new Date();
+    const time = now.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit', hour12: true });
+    const date = now.toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' });
+    message += `\n_${time} · ${date}_\n`;
+    message += `_Sent via bakedinparvati.in_`;
 
     const encodedMessage = encodeURIComponent(message);
     const whatsappUrl = `https://wa.me/${cafeInfo.phone}?text=${encodedMessage}`;
