@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, NavLink, useLocation } from 'react-router-dom';
 import { Home, Coffee, Tent } from 'lucide-react';
 import { AnimatePresence } from 'framer-motion';
@@ -45,6 +45,11 @@ const AppLayout = ({ cart, setCart }) => {
   const location = useLocation();
   const isLanding = location.pathname === '/';
   const isCartPage = location.pathname === '/cart';
+
+  // Scroll to top on route change
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
 
   return (
     <div className={`bg-[#0D1B2A] min-h-screen text-white ${!isLanding && !isCartPage ? 'md:pt-16 pt-12' : ''}`}>

@@ -1,10 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { menuItems } from '../data';
 import { Plus, Minus } from 'lucide-react';
 
 const Menu = ({ cart, setCart }) => {
   const [isMenuModalOpen, setIsMenuModalOpen] = useState(false);
+
+  // Lock body scroll when bottom sheet is open
+  useEffect(() => {
+    if (isMenuModalOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => { document.body.style.overflow = ''; };
+  }, [isMenuModalOpen]);
 
   // Group menu items by category
   const groupedMenu = menuItems.reduce((acc, item) => {
@@ -175,27 +185,27 @@ const Menu = ({ cart, setCart }) => {
               animate={{ y: 0 }}
               exit={{ y: "100%" }}
               transition={{ type: "spring", damping: 28, stiffness: 280 }}
-              className="absolute bottom-0 left-0 w-full bg-stone-900 border-t border-white/10 rounded-t-3xl shadow-2xl max-h-[70vh] flex flex-col"
+              className="absolute bottom-0 left-0 w-full bg-stone-900 border-t border-white/10 rounded-t-3xl shadow-2xl"
               onClick={e => e.stopPropagation()}
             >
               {/* Handle bar */}
               <div className="flex justify-center pt-3 pb-1">
                 <div className="w-10 h-1 bg-white/20 rounded-full" />
               </div>
-              <div className="flex justify-between items-center px-5 py-3">
-                <h3 className="text-lg font-bold text-white">Browse Categories</h3>
-                <button onClick={() => setIsMenuModalOpen(false)} className="bg-white/5 p-2 rounded-full text-gray-400">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+              <div className="flex justify-between items-center px-5 py-2">
+                <h3 className="text-base font-bold text-white">Browse Categories</h3>
+                <button onClick={() => setIsMenuModalOpen(false)} className="bg-white/5 p-1.5 rounded-full text-gray-400">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
                 </button>
               </div>
-              <div className="overflow-y-auto px-3 pb-6 flex-1">
+              <div className="px-3 pb-20">
                 {Object.entries(groupedMenu).map(([category, items]) => (
                   <button
                     key={`nav-${category}`}
                     onClick={() => scrollToCategory(category)}
-                    className="w-full flex justify-between items-center px-4 py-2.5 rounded-xl hover:bg-white/5 active:bg-white/10 transition-colors text-left"
+                    className="w-full flex justify-between items-center px-3 py-[9px] rounded-lg hover:bg-white/5 active:bg-white/10 transition-colors text-left"
                   >
-                    <span className="text-gray-300 font-medium text-[15px]">{category}</span>
+                    <span className="text-gray-300 text-[14px]">{category}</span>
                     <span className="text-gray-500 text-xs font-mono">{items.length}</span>
                   </button>
                 ))}
