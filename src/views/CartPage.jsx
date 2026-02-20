@@ -23,19 +23,22 @@ const CartPage = ({ cart, setCart }) => {
   const handleWhatsAppCheckout = () => {
     if (cart.length === 0) return;
 
-    let message = `*🏔️ New Order | Baked in Parvathi*\n\n`;
-    message += `Type: *${orderType}*\n`;
-    if (request) {
-      message += `Note: _${request}_\n\n`;
-    }
-    
-    message += `\n*Order Details:*\n`;
+    let message = `*🏔️ Baked in Parvathi*\n`;
+    message += `━━━━━━━━━━━━━━━\n\n`;
+
     cart.forEach(item => {
-      message += `• ${item.qty}x ${item.name} (₹${item.price * item.qty})\n`;
+      message += `*${item.qty}x ${item.name}*\n`;
+      message += `    ₹${item.price} × ${item.qty} = ₹${item.price * item.qty}\n\n`;
     });
 
-    message += `\n*Total: ₹${totalPrice}*\n`;
-    message += `\n_Generated via Digital Menu_`;
+    message += `━━━━━━━━━━━━━━━\n`;
+    message += `*Total: ₹${totalPrice}*\n\n`;
+
+    message += `📋 *Order Type:* ${orderType}\n`;
+    if (request) {
+      message += `📝 *Note:* _${request}_\n`;
+    }
+    message += `\n_Sent via bakedinparvathi.vercel.app_`;
 
     const encodedMessage = encodeURIComponent(message);
     const whatsappUrl = `https://wa.me/${cafeInfo.phone}?text=${encodedMessage}`;
