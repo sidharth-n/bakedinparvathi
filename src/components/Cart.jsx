@@ -39,29 +39,29 @@ const Cart = ({ cart, setCart }) => {
 
   return (
     <>
-      {/* Floating Bread Button */}
-      {totalItems > 0 && (
+      {/* Swiggy Style Bottom Cart Banner */}
+      {totalItems > 0 && !isOpen && (
         <motion.div 
-          initial={{ scale: 0, y: 50 }}
-          animate={{ scale: 1, y: 0 }}
-          className="fixed bottom-24 right-6 z-50"
+          initial={{ y: 100 }}
+          animate={{ y: 0 }}
+          className="fixed bottom-0 left-0 w-full z-50 p-4 pb-6 md:pb-4 pointer-events-none"
         >
-          <button 
-            onClick={() => setIsOpen(true)}
-            className="relative bg-gradient-to-tr from-amber-700 to-amber-500 text-stone-900 border-2 border-amber-900 p-4 rounded-full shadow-[0_10px_25px_rgba(0,0,0,0.5)] hover:scale-105 active:scale-95 transition-transform flex items-center justify-center gap-2 group"
-          >
-            {/* The Bread/Bun shape illusion using border radius */}
-            <div className="absolute inset-0 bg-amber-600 rounded-[40%_60%_70%_30%/40%_50%_60%_50%] opacity-20 group-hover:animate-spin-slow"></div>
-            
-            <ShoppingBag size={24} className="relative z-10" />
-            <span className="relative z-10 font-bold font-mono text-lg">{totalItems}</span>
-            
-            {/* Notification Dot */}
-            <span className="absolute -top-1 -right-1 flex h-4 w-4">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-200 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-4 w-4 bg-amber-300 border border-amber-800"></span>
-            </span>
-          </button>
+          <div className="max-w-md mx-auto pointer-events-auto">
+            <button 
+              onClick={() => setIsOpen(true)}
+              className="w-full bg-[#1e9947] hover:bg-[#1a853d] text-white p-4 rounded-2xl shadow-xl flex items-center justify-between transition-colors font-body"
+            >
+              <div className="flex items-center gap-2">
+                <span className="font-bold">{totalItems} Item{totalItems > 1 ? 's' : ''} added</span>
+              </div>
+              <div className="flex items-center gap-1 font-bold">
+                <span>View Cart</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+              </div>
+            </button>
+          </div>
         </motion.div>
       )}
 

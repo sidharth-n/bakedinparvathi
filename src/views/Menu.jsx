@@ -4,12 +4,24 @@ import { menuItems } from '../data';
 import { Plus, Minus } from 'lucide-react';
 
 const Menu = ({ cart, setCart }) => {
+  const [isMenuModalOpen, setIsMenuModalOpen] = useState(false);
+
   // Group menu items by category
   const groupedMenu = menuItems.reduce((acc, item) => {
     if (!acc[item.category]) acc[item.category] = [];
     acc[item.category].push(item);
     return acc;
   }, {});
+
+  const scrollToCategory = (category) => {
+    const element = document.getElementById(`category-${category}`);
+    if (element) {
+      // Offset for sticky navigation/padding
+      const y = element.getBoundingClientRect().top + window.scrollY - 100;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    }
+    setIsMenuModalOpen(false);
+  };
 
   const addToCart = (item) => {
     setCart((prev) => {
@@ -58,11 +70,12 @@ const Menu = ({ cart, setCart }) => {
         {Object.entries(groupedMenu).map(([category, items], idx) => (
           <motion.div 
             key={category}
+            id={`category-${category}`}
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ delay: idx * 0.1 }}
-            className="chalkboard p-6 md:p-8"
+            className="chalkboard p-6 md:p-8 pt-20 -mt-16" // offset for scroll padding
           >
             <h3 className="text-3xl font-chalk text-amber-400 border-b-2 border-white/10 pb-4 mb-6 text-center tracking-widest uppercase">
               {category}
@@ -119,6 +132,69 @@ const Menu = ({ cart, setCart }) => {
           </motion.div>
         ))}
       </div>
+
+      {/* Floating Menu Category Button */}
+      <motion.div 
+        initial={{ y: 50, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        className="fixed bottom-24 left-1/2 -translate-x-1/2 z-40"
+      >
+        <button 
+          onClick={() => setIsMenuModalOpen(true)}
+          className="bg-black/90 backdrop-blur-md text-white border border-white/20 px-6 py-3 rounded-full shadow-2xl flex items-center gap-2 hover:bg-black transition-colors font-body font-medium"
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <line x1="8" y1="6" x2="21" y2="6"></line>
+            <line x1="8" y1="12" x2="21" y2="12"></line>
+            <line x1="8" y1="18" x2="21" y2="18"></line>
+            <line x1="3" y1="6" x2="3.01" y2="6"></line>
+            <line x1="3" y1="12" x2="3.01" y2="12"></line>
+            <line x1="3" y1="18" x2="3.01" y2="18"></line>
+          </svg>
+          Menu
+        </button>
+      </motion.div>
+
+      {/* Category Navigation Modal */}
+      <AnimatePresence>
+        {isMenuModalOpen && (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
+            onClick={() => setIsMenuModalOpen(false)}
+          >
+            <motion.div 
+              initial={{ scale: 0.9, opacity: 0, y: 20 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.9, opacity: 0, y: 20 }}
+              className="bg-stone-900 border border-white/10 p-6 rounded-3xl shadow-2xl w-full max-w-sm"
+              onClick={e => e.stopPropagation()}
+            >
+              <div className="flex justify-between items-center mb-6">
+                <h3 className="text-xl font-bold text-white">Categories</h3>
+                <button onClick={() => setIsMenuModalOpen(false)} className="bg-white/5 p-2 rounded-full text-gray-400">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                </button>
+              </div>
+              <div className="space-y-1">
+                {Object.entries(groupedMenu).map(([category, items]) => (
+                  <button
+                    key={`nav-${category}`}
+                    onClick={() => scrollToCategory(category)}
+                    className="w-full flex justify-between items-center px-4 py-3 rounded-xl hover:bg-white/5 transition-colors text-left"
+                  >
+                    <span className="text-gray-300 font-medium">{category}</span>
+                    <span className="text-gray-500 text-sm font-mono">{items.length}</span>
+                  </button>
+                ))}
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
     </div>
   );
 };
