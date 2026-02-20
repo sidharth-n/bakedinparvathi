@@ -46,18 +46,17 @@ const AppLayout = ({ cart, setCart }) => {
   const isLanding = location.pathname === '/';
 
   return (
-    <div className={`bg-[#0D1B2A] min-h-screen text-white ${!isLanding ? 'md:pt-16' : ''}`}>
+    <div className={`bg-[#0D1B2A] min-h-screen text-white ${!isLanding ? 'md:pt-16 pt-12' : ''}`}>
       {/* Only show navigation and global UI on the App tabs */}
       {!isLanding && (
         <>
           <Navigation />
           <AltitudeScroll />
-          <Hero />
         </>
       )}
 
       {/* Route Views */}
-      <div className={`relative z-30 ${!isLanding ? '-mt-8 md:-mt-12' : ''}`}>
+      <div className={`relative z-30`}>
         <AnimatePresence mode="wait">
           <Routes location={location} key={location.pathname}>
             <Route path="/" element={<LandingPage />} />
