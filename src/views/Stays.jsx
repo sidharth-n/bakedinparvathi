@@ -5,16 +5,21 @@ import { Home, Wifi, Coffee, Music, Map } from 'lucide-react';
 
 const Stays = () => {
   return (
-    <div className="max-w-4xl mx-auto px-4 py-12 pb-32">
+    <div className="max-w-4xl mx-auto px-4 py-8 pb-32">
       <motion.div 
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="text-center mb-12"
+        className="text-center mb-8 mt-4"
       >
-        <h2 className="text-5xl font-display text-amber-500 mb-4 drop-shadow-md">Stay & Rest</h2>
-        <p className="text-stone-300 font-body text-sm md:text-base max-w-xl mx-auto">
-          Wake up to the mighty Himalayas. Enjoy our cozy dorms and cottages equipped with modern comforts.
+        <h2 className="text-5xl font-display text-amber-500 mb-2 drop-shadow-md">Stay & Rest</h2>
+        <p className="text-stone-400 font-body text-sm max-w-xl mx-auto italic">
+          Wake up to the mighty Himalayas.
         </p>
+        <div className="flex items-center justify-center gap-3 mt-4">
+          <div className="h-px w-12 bg-amber-600/40" />
+          <div className="w-1.5 h-1.5 rounded-full bg-amber-500/60" />
+          <div className="h-px w-12 bg-amber-600/40" />
+        </div>
       </motion.div>
 
       {/* Accommodations */}

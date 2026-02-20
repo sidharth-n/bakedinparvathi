@@ -5,19 +5,24 @@ import { Mountain, MapPin, Flame, Star } from 'lucide-react';
 
 const Treks = () => {
   return (
-    <div className="max-w-4xl mx-auto px-4 py-12 pb-32">
+    <div className="max-w-4xl mx-auto px-4 py-8 pb-32">
       <motion.div 
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
-        className="text-center mb-16 relative"
+        className="text-center mb-10 mt-4 relative"
       >
         {/* Decorative Mountain Icon Background */}
         <Mountain size={120} className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-white/5 -z-10" strokeWidth={1} />
         
-        <h2 className="text-5xl font-display text-amber-500 mb-4 drop-shadow-md">Trek Packages</h2>
-        <p className="text-stone-300 font-body text-sm md:text-base max-w-xl mx-auto">
-          Explore the hidden gems of the Parvathi Valley. Kheerganga, Bhunbuni, and beyond.
+        <h2 className="text-5xl font-display text-amber-500 mb-2 drop-shadow-md">Trek Packages</h2>
+        <p className="text-stone-400 font-body text-sm max-w-xl mx-auto italic">
+          Explore the hidden gems of Parvati Valley.
         </p>
+        <div className="flex items-center justify-center gap-3 mt-4">
+          <div className="h-px w-12 bg-amber-600/40" />
+          <div className="w-1.5 h-1.5 rounded-full bg-amber-500/60" />
+          <div className="h-px w-12 bg-amber-600/40" />
+        </div>
       </motion.div>
 
       {/* Trek Timeline / List */}

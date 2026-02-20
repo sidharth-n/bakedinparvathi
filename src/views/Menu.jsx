@@ -53,17 +53,25 @@ const Menu = ({ cart, setCart }) => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-6 pb-32">
+    <div className="max-w-4xl mx-auto px-4 py-8 pb-32">
       <motion.div 
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="text-center mb-6"
+        className="text-center mb-8 mt-4"
       >
-        <h2 className="text-5xl font-display text-amber-500 drop-shadow-md">Menu</h2>
+        <h2 className="text-5xl font-display text-amber-500 drop-shadow-md mb-2">Menu</h2>
+        <p className="text-stone-400 font-body text-sm max-w-xl mx-auto italic">
+          Freshly baked in the Himalayas.
+        </p>
+        <div className="flex items-center justify-center gap-3 mt-4">
+          <div className="h-px w-12 bg-amber-600/40" />
+          <div className="w-1.5 h-1.5 rounded-full bg-amber-500/60" />
+          <div className="h-px w-12 bg-amber-600/40" />
+        </div>
       </motion.div>
 
       {/* Categories */}
-      <div className="space-y-16">
+      <div className="space-y-10">
         {Object.entries(groupedMenu).map(([category, items], idx) => (
           <motion.div 
             key={category}
@@ -72,7 +80,8 @@ const Menu = ({ cart, setCart }) => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ delay: idx * 0.1 }}
-            className="chalkboard p-6 md:p-8 pt-20 -mt-16" // offset for scroll padding
+            style={{ scrollMarginTop: '100px' }}
+            className="chalkboard p-6 md:p-8"
           >
             <h3 className="text-3xl font-chalk text-amber-400 border-b-2 border-white/10 pb-4 mb-6 text-center tracking-widest uppercase">
               {category}

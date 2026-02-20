@@ -6,6 +6,7 @@ import { cafeInfo } from '../data';
 
 const CartPage = ({ cart, setCart }) => {
   const navigate = useNavigate();
+  const [orderType, setOrderType] = useState('Dine In'); // Dine In, Takeaway, Stay Delivery
   const [request, setRequest] = useState('');
 
   const totalPrice = cart.reduce((acc, item) => acc + (item.price * item.qty), 0);
@@ -23,6 +24,7 @@ const CartPage = ({ cart, setCart }) => {
     if (cart.length === 0) return;
 
     let message = `*🏔️ New Order | Baked in Parvathi*\n\n`;
+    message += `Type: *${orderType}*\n`;
     if (request) {
       message += `Note: _${request}_\n\n`;
     }
@@ -113,6 +115,32 @@ const CartPage = ({ cart, setCart }) => {
               <Plus size={18} className="text-gray-400" /> 
               Add more items
             </button>
+          </div>
+        </div>
+
+        {/* Order Details & Delivery Type */}
+        <div className="bg-white/5 border border-white/5 rounded-3xl p-5 shadow-lg space-y-5">
+          <h3 className="font-bold text-sm uppercase tracking-wider text-gray-400">Order Information</h3>
+          
+          <div className="grid grid-cols-3 gap-2">
+            {[
+              { id: 'Dine In', icon: Utensils },
+              { id: 'Takeaway', icon: MapPin },
+              { id: 'Stay Delivery', icon: Tent }
+            ].map(type => (
+              <button
+                key={type.id}
+                onClick={() => setOrderType(type.id)}
+                className={`flex flex-col items-center justify-center gap-1.5 p-3 rounded-2xl text-[11px] font-medium transition-all border ${
+                  orderType === type.id 
+                    ? 'bg-amber-600/20 border-amber-500 text-amber-400 shadow-[0_0_15px_rgba(245,158,11,0.15)]' 
+                    : 'bg-black/40 border-transparent text-gray-400 hover:bg-white/5'
+                }`}
+              >
+                <type.icon size={18} className={orderType === type.id ? 'stroke-[2.5]' : 'stroke-2'} />
+                <span>{type.id}</span>
+              </button>
+            ))}
           </div>
         </div>
 
