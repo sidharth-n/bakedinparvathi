@@ -53,16 +53,13 @@ const Menu = ({ cart, setCart }) => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-12 pb-32">
+    <div className="max-w-4xl mx-auto px-4 py-6 pb-32">
       <motion.div 
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="text-center mb-12"
+        className="text-center mb-6"
       >
-        <h2 className="text-5xl font-display text-amber-500 mb-4 drop-shadow-md">Menu</h2>
-        <p className="text-stone-300 font-body text-sm md:text-base max-w-xl mx-auto">
-          Wood-fired, hand-tossed, and altitude-baked. Select your items to order via WhatsApp.
-        </p>
+        <h2 className="text-5xl font-display text-amber-500 drop-shadow-md">Menu</h2>
       </motion.div>
 
       {/* Categories */}

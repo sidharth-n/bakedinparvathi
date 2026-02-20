@@ -6,8 +6,6 @@ import { cafeInfo } from '../data';
 
 const CartPage = ({ cart, setCart }) => {
   const navigate = useNavigate();
-  const [orderType, setOrderType] = useState('Dine In'); // Dine In, Takeaway, Stay Delivery
-  const [tableOrRoom, setTableOrRoom] = useState('');
   const [request, setRequest] = useState('');
 
   const totalPrice = cart.reduce((acc, item) => acc + (item.price * item.qty), 0);
@@ -25,12 +23,8 @@ const CartPage = ({ cart, setCart }) => {
     if (cart.length === 0) return;
 
     let message = `*🏔️ New Order | Baked in Parvathi*\n\n`;
-    message += `Type: *${orderType}*\n`;
-    if (tableOrRoom) {
-      message += `Table/Room: *${tableOrRoom}*\n`;
-    }
     if (request) {
-      message += `Note: _${request}_\n`;
+      message += `Note: _${request}_\n\n`;
     }
     
     message += `\n*Order Details:*\n`;
@@ -115,62 +109,25 @@ const CartPage = ({ cart, setCart }) => {
           </div>
 
           <div className="mt-6 pt-4 border-t border-white/10 flex flex-wrap gap-3">
-            <button onClick={() => navigate('/menu')} className="border border-white/20 px-4 py-2.5 rounded-xl text-sm font-medium hover:bg-white/5 flex items-center gap-2 transition-colors">
-              <Plus size={16} className="text-gray-400" /> 
+            <button onClick={() => navigate('/menu')} className="w-full border border-white/20 px-4 py-3 rounded-xl text-sm font-medium hover:bg-white/5 flex flex-1 items-center justify-center gap-2 transition-colors">
+              <Plus size={18} className="text-gray-400" /> 
               Add more items
             </button>
-            <button onClick={() => {
-              const req = prompt("Any cooking requests?");
-              if(req) setRequest(req);
-            }} className="border border-white/20 px-4 py-2.5 rounded-xl text-sm font-medium hover:bg-white/5 flex items-center gap-2 transition-colors">
-              <PenLine size={16} className="text-gray-400" /> 
-              {request ? 'Edit request' : 'Cooking requests'}
-            </button>
           </div>
-          {request && (
-            <p className="mt-4 text-sm text-gray-400 bg-black/20 p-3 rounded-lg border border-white/5">
-              <span className="font-semibold text-gray-300">Request:</span> {request}
-            </p>
-          )}
         </div>
 
-        {/* Order Details & Delivery Type */}
-        <div className="bg-white/5 border border-white/5 rounded-3xl p-5 shadow-lg space-y-5">
-          <h3 className="font-bold text-sm uppercase tracking-wider text-gray-400">Order Information</h3>
-          
-          <div className="grid grid-cols-3 gap-2">
-            {[
-              { id: 'Dine In', icon: Utensils },
-              { id: 'Takeaway', icon: MapPin },
-              { id: 'Stay Delivery', icon: Tent }
-            ].map(type => (
-              <button
-                key={type.id}
-                onClick={() => setOrderType(type.id)}
-                className={`flex flex-col items-center justify-center gap-1.5 p-3 rounded-2xl text-[11px] font-medium transition-all border ${
-                  orderType === type.id 
-                    ? 'bg-amber-600/20 border-amber-500 text-amber-400 shadow-[0_0_15px_rgba(245,158,11,0.15)]' 
-                    : 'bg-black/40 border-transparent text-gray-400 hover:bg-white/5'
-                }`}
-              >
-                <type.icon size={18} className={orderType === type.id ? 'stroke-[2.5]' : 'stroke-2'} />
-                <span>{type.id}</span>
-              </button>
-            ))}
-          </div>
-
-          {orderType !== 'Takeaway' && (
-            <div className="pt-2">
-              <input 
-                type="text" 
-                placeholder={orderType === 'Dine In' ? "Enter Table Number (Optional)" : "Enter Room Name / Number"}
-                value={tableOrRoom}
-                onChange={(e) => setTableOrRoom(e.target.value)}
-                className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3.5 text-white text-sm focus:outline-none focus:border-amber-500/50 transition-colors"
-                autoFocus
-              />
-            </div>
-          )}
+        {/* Cooking Requests */}
+        <div className="bg-white/5 border border-white/5 rounded-3xl p-5 shadow-lg">
+          <h3 className="font-bold text-sm uppercase tracking-wider text-gray-400 mb-3 flex items-center gap-2">
+            <PenLine size={16} />
+            Cooking Requests
+          </h3>
+          <textarea 
+            placeholder="Any specific requests? (e.g. less spicy, extra cheese)"
+            value={request}
+            onChange={(e) => setRequest(e.target.value)}
+            className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-amber-500/50 transition-colors resize-none h-24"
+          />
         </div>
       </div>
 
