@@ -160,38 +160,43 @@ const Menu = ({ cart, setCart }) => {
         </button>
       </motion.div>
 
-      {/* Category Navigation Modal */}
+      {/* Category Navigation Bottom Sheet */}
       <AnimatePresence>
         {isMenuModalOpen && (
           <motion.div 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
+            className="fixed inset-0 z-[60] bg-black/60 backdrop-blur-sm"
             onClick={() => setIsMenuModalOpen(false)}
           >
             <motion.div 
-              initial={{ scale: 0.9, opacity: 0, y: 20 }}
-              animate={{ scale: 1, opacity: 1, y: 0 }}
-              exit={{ scale: 0.9, opacity: 0, y: 20 }}
-              className="bg-stone-900 border border-white/10 p-6 rounded-3xl shadow-2xl w-full max-w-sm"
+              initial={{ y: "100%" }}
+              animate={{ y: 0 }}
+              exit={{ y: "100%" }}
+              transition={{ type: "spring", damping: 28, stiffness: 280 }}
+              className="absolute bottom-0 left-0 w-full bg-stone-900 border-t border-white/10 rounded-t-3xl shadow-2xl max-h-[70vh] flex flex-col"
               onClick={e => e.stopPropagation()}
             >
-              <div className="flex justify-between items-center mb-6">
-                <h3 className="text-xl font-bold text-white">Categories</h3>
+              {/* Handle bar */}
+              <div className="flex justify-center pt-3 pb-1">
+                <div className="w-10 h-1 bg-white/20 rounded-full" />
+              </div>
+              <div className="flex justify-between items-center px-5 py-3">
+                <h3 className="text-lg font-bold text-white">Browse Categories</h3>
                 <button onClick={() => setIsMenuModalOpen(false)} className="bg-white/5 p-2 rounded-full text-gray-400">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
                 </button>
               </div>
-              <div className="space-y-1">
+              <div className="overflow-y-auto px-3 pb-6 flex-1">
                 {Object.entries(groupedMenu).map(([category, items]) => (
                   <button
                     key={`nav-${category}`}
                     onClick={() => scrollToCategory(category)}
-                    className="w-full flex justify-between items-center px-4 py-3 rounded-xl hover:bg-white/5 transition-colors text-left"
+                    className="w-full flex justify-between items-center px-4 py-2.5 rounded-xl hover:bg-white/5 active:bg-white/10 transition-colors text-left"
                   >
-                    <span className="text-gray-300 font-medium">{category}</span>
-                    <span className="text-gray-500 text-sm font-mono">{items.length}</span>
+                    <span className="text-gray-300 font-medium text-[15px]">{category}</span>
+                    <span className="text-gray-500 text-xs font-mono">{items.length}</span>
                   </button>
                 ))}
               </div>
