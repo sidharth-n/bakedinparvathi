@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- Background -->
+  <rect width="512" height="512" fill="#0D1B2A" rx="100"/>
+  
+  <!-- Glowing Sun/Moon -->
+  <circle cx="256" cy="180" r="80" fill="#FBBF24" opacity="0.9"/>
+  
+  <!-- Mountain Peaks -->
+  <path d="M100 360 L200 200 L270 300 L350 160 L460 360 Z" fill="#D97706"/>
+  
+  <!-- Bakery Base / Croissant Shape -->
+  <path d="M120 360 C 120 420, 392 420, 392 360 Z" fill="#92400E"/>
+  
+  <!-- Accent Line -->
+  <rect x="140" y="380" width="232" height="12" rx="6" fill="#F59E0B"/>
+</svg>
