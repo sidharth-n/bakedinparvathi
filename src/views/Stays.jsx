@@ -66,8 +66,7 @@ const Stays = () => {
                   </div>
                 </div>
 
-                <div className="flex items-center justify-between mt-auto">
-                  <span className="text-xs text-gray-500 italic">Tap to enquire</span>
+                <div className="flex items-center justify-end mt-auto">
                   <a 
                     href={`https://wa.me/${cafeInfo.phone}?text=${encodeURIComponent(`Hi! I'm interested in the *${stay.name}* (₹${stay.pricePerNight}). Could you let me know about availability?\n\n_Sent via bakedinparvati.in_`)}`}
                     target="_blank"

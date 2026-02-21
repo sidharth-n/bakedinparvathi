@@ -125,18 +125,21 @@ export const treks = [
     id: 't1', 
     name: 'Kheerganga Trek (1N/2D)', 
     price: 1500, 
+    image: '/treks/kheerganga.png',
     description: 'Guided trek to Kheerganga. Includes camping, bonfire, food, music.' 
   },
   { 
     id: 't2', 
     name: 'Bhunbuni Trek (1N/2D)', 
     price: 2500, 
+    image: '/treks/bhunbuni.png',
     description: 'Guided trek to Bhunbuni with camping under the stars.' 
   },
   { 
     id: 't3', 
     name: 'Kheerganga-Bhunbuni Circuit (2N/3D)', 
     price: 3600, 
+    image: '/treks/circuit.png',
     description: 'Complete circuit trek. Includes guide, camping, bonfire, meals & stargazing.' 
   }
 ];
