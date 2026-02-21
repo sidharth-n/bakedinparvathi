@@ -12,7 +12,7 @@ const LandingPage = () => {
       <AnimatedHero />
 
       {/* 2. Primary CTA floating over the transition */}
-      <div className="relative z-40 text-center -mt-20 mb-24 px-4">
+      <div className="relative z-40 text-center -mt-28 md:-mt-36 mb-24 px-4">
         <motion.div 
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
