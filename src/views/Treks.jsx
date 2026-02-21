@@ -86,7 +86,6 @@ const Treks = () => {
                 </a>
               </div>
               </div>
-              </div>
 
               {/* Decorative side accent */}
               <div className="absolute right-0 top-0 bottom-0 w-1 bg-amber-600/0 group-hover:bg-amber-600/10 transition-colors" />
