@@ -33,9 +33,9 @@ const Stays = () => {
             className="bg-black/40 border border-white/10 rounded-2xl overflow-hidden shadow-2xl backdrop-blur-sm"
           >
             <div className="md:flex">
-              {/* Image Placeholder */}
-              <div className="md:w-1/3 bg-stone-800 relative min-h-[200px] flex items-center justify-center border-r border-white/5">
-                <Home className="text-stone-700 w-16 h-16" />
+              {/* Stay Image */}
+              <div className="md:w-1/3 bg-stone-800 relative min-h-[200px] border-r border-white/5">
+                <img src={stay.image} alt={stay.name} className="absolute inset-0 w-full h-full object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                 <span className="absolute bottom-4 left-4 text-xs font-bold text-white tracking-widest uppercase bg-amber-900/50 px-2 py-1 rounded backdrop-blur">
                   {stay.name.includes('Weekly') ? 'Extended Stay' : 'Nightly'}
@@ -65,10 +65,6 @@ const Stays = () => {
                     ))}
                   </div>
                 </div>
-                
-                <p className="text-xs text-amber-500/70 italic mt-auto">
-                  * Tap the floating cart to message us and check availability!
-                </p>
               </div>
             </div>
           </motion.div>

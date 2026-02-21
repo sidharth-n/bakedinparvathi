@@ -66,10 +66,10 @@ const LandingPage = () => {
           <div className="grid grid-cols-2 gap-4 relative">
             {/* Visual placeholders for stunning cafe photos */}
             <div className="bg-stone-800 rounded-3xl h-64 md:h-80 shadow-2xl relative overflow-hidden group">
-               <img src="https://images.unsplash.com/photo-1542385437-084dcaf51509?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Cafe View" className="absolute w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity duration-700 mix-blend-luminosity hover:mix-blend-normal" />
+               <img src="/landing-page/image1.webp" alt="Cafe View" className="absolute w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity duration-700 mix-blend-luminosity hover:mix-blend-normal" />
             </div>
             <div className="bg-stone-800 rounded-3xl h-64 md:h-80 shadow-2xl relative overflow-hidden mt-12 group">
-              <img src="https://images.unsplash.com/photo-1511497584788-876760111969?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Forest" className="absolute w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity duration-700 mix-blend-luminosity hover:mix-blend-normal" />
+              <img src="/landing-page/image2.jpg" alt="Mountain View" className="absolute w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity duration-700 mix-blend-luminosity hover:mix-blend-normal" />
             </div>
           </div>
         </div>

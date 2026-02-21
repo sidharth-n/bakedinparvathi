@@ -98,6 +98,7 @@ export const stays = [
     id: 's1', 
     name: 'Cottage (2 ppl)', 
     pricePerNight: 1200, 
+    image: '/stays/cottage-2ppl.webp',
     description: 'Cozy stay with valley views and indoor heating. (₹950 per person incl. meals)',
     features: ['Free WiFi (24x7)', 'Indoor Heating', 'Café & Bakery access', 'Library & Board Games'] 
   },
@@ -105,6 +106,7 @@ export const stays = [
     id: 's2', 
     name: 'Weekly Dorm Package', 
     pricePerNight: 5800, 
+    image: '/stays/weekly-dorm.webp',
     description: '1 week stay in dorms + meals',
     features: ['Meals Included', 'Monthly options up to ₹21,000', 'Stargazing Space'] 
   },
@@ -112,6 +114,7 @@ export const stays = [
     id: 's3', 
     name: 'Weekly Private Cottage', 
     pricePerNight: 6300, 
+    image: '/stays/weekly-private-cottage.webp',
     description: '1 week stay in private cottage (+meals options available)',
     features: ['Private Cottage', 'Monthly options up to ₹24,000'] 
   },
