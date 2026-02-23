@@ -45,9 +45,9 @@ const Stays = () => {
               {/* Content */}
               <div className="p-6 md:p-8 md:w-2/3 flex flex-col justify-between">
                 <div>
-                  <div className="flex justify-between items-start mb-2">
-                    <h3 className="text-2xl font-chalk text-amber-400 tracking-wider font-bold">{stay.name}</h3>
-                    <div className="text-right">
+                  <div className="flex justify-between items-start mb-2 gap-4">
+                    <h3 className="text-xl font-chalk text-amber-400 tracking-wider font-bold flex-1">{stay.name}</h3>
+                    <div className="text-right shrink-0">
                       <span className="text-xl font-mono font-bold text-white">₹{stay.pricePerNight}</span>
                       <span className="text-xs text-gray-500 block">/ package</span>
                     </div>
