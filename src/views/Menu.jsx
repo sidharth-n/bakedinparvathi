@@ -185,20 +185,20 @@ const Menu = ({ cart, setCart }) => {
               animate={{ y: 0 }}
               exit={{ y: "100%" }}
               transition={{ type: "spring", damping: 28, stiffness: 280 }}
-              className="absolute bottom-0 left-0 w-full bg-stone-900 border-t border-white/10 rounded-t-3xl shadow-2xl"
+              className="absolute bottom-0 left-0 w-full bg-stone-900 border-t border-white/10 rounded-t-3xl shadow-2xl max-h-[70vh] flex flex-col"
               onClick={e => e.stopPropagation()}
             >
               {/* Handle bar */}
-              <div className="flex justify-center pt-3 pb-1">
+              <div className="flex justify-center pt-3 pb-1 shrink-0">
                 <div className="w-10 h-1 bg-white/20 rounded-full" />
               </div>
-              <div className="flex justify-between items-center px-5 py-2">
+              <div className="flex justify-between items-center px-5 py-2 shrink-0">
                 <h3 className="text-base font-bold text-white">Browse Categories</h3>
                 <button onClick={() => setIsMenuModalOpen(false)} className="bg-white/5 p-1.5 rounded-full text-gray-400">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
                 </button>
               </div>
-              <div className="px-3 pb-20">
+              <div className="overflow-y-auto overscroll-contain px-3 pb-20 flex-1">
                 {Object.entries(groupedMenu).map(([category, items]) => (
                   <button
                     key={`nav-${category}`}
