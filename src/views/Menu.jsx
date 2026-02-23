@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { menuItems } from '../data';
-import { Plus, Minus } from 'lucide-react';
+import { Plus, Minus, Search, X } from 'lucide-react';
 
 const Menu = ({ cart, setCart }) => {
   const [isMenuModalOpen, setIsMenuModalOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
 
   // Lock body scroll when bottom sheet is open
   useEffect(() => {
@@ -16,20 +17,43 @@ const Menu = ({ cart, setCart }) => {
     return () => { document.body.style.overflow = ''; };
   }, [isMenuModalOpen]);
 
+  // Filter items by search query
+  const filteredItems = useMemo(() => {
+    if (!searchQuery.trim()) return menuItems;
+    const q = searchQuery.toLowerCase();
+    return menuItems.filter(
+      item => item.name.toLowerCase().includes(q) || item.category.toLowerCase().includes(q)
+    );
+  }, [searchQuery]);
+
   // Group menu items by category
-  const groupedMenu = menuItems.reduce((acc, item) => {
-    if (!acc[item.category]) acc[item.category] = [];
-    acc[item.category].push(item);
-    return acc;
-  }, {});
+  const groupedMenu = useMemo(() => {
+    return filteredItems.reduce((acc, item) => {
+      if (!acc[item.category]) acc[item.category] = [];
+      acc[item.category].push(item);
+      return acc;
+    }, {});
+  }, [filteredItems]);
+
+  // Full grouped menu (unfiltered) for the bottom sheet
+  const allGroupedMenu = useMemo(() => {
+    return menuItems.reduce((acc, item) => {
+      if (!acc[item.category]) acc[item.category] = [];
+      acc[item.category].push(item);
+      return acc;
+    }, {});
+  }, []);
 
   const scrollToCategory = (category) => {
-    const element = document.getElementById(`category-${category}`);
-    if (element) {
-      // Offset for sticky navigation/padding
-      const y = element.getBoundingClientRect().top + window.scrollY - 100;
-      window.scrollTo({ top: y, behavior: 'smooth' });
-    }
+    setSearchQuery(''); // Clear search when navigating by category
+    // Small timeout to let the DOM re-render with full menu before scrolling
+    setTimeout(() => {
+      const element = document.getElementById(`category-${category}`);
+      if (element) {
+        const y = element.getBoundingClientRect().top + window.scrollY - 100;
+        window.scrollTo({ top: y, behavior: 'smooth' });
+      }
+    }, 50);
     setIsMenuModalOpen(false);
   };
 
@@ -67,7 +91,7 @@ const Menu = ({ cart, setCart }) => {
       <motion.div 
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="text-center mb-8 mt-4"
+        className="text-center mb-6 mt-4"
       >
         <h2 className="text-5xl font-display text-amber-500 drop-shadow-md mb-2">Menu</h2>
         <p className="text-stone-400 font-body text-sm max-w-xl mx-auto italic">
@@ -80,16 +104,47 @@ const Menu = ({ cart, setCart }) => {
         </div>
       </motion.div>
 
+      {/* Search Bar */}
+      <div className="sticky top-12 md:top-16 z-30 mb-6">
+        <div className="relative max-w-md mx-auto">
+          <Search size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500" />
+          <input
+            type="text"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            placeholder="Search for pizza, eggs, coffee..."
+            className="w-full bg-stone-900/90 backdrop-blur-md border border-white/10 rounded-full py-3 pl-11 pr-10 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-amber-600/50 focus:ring-1 focus:ring-amber-600/30 transition-all"
+          />
+          {searchQuery && (
+            <button
+              onClick={() => setSearchQuery('')}
+              className="absolute right-3 top-1/2 -translate-y-1/2 bg-white/10 rounded-full p-1 text-gray-400 hover:text-white transition-colors"
+            >
+              <X size={14} />
+            </button>
+          )}
+        </div>
+        {searchQuery && (
+          <p className="text-center text-xs text-gray-500 mt-2">
+            {filteredItems.length} item{filteredItems.length !== 1 ? 's' : ''} found
+          </p>
+        )}
+      </div>
+
+      {/* No results */}
+      {searchQuery && filteredItems.length === 0 && (
+        <div className="text-center py-16">
+          <p className="text-gray-500 text-lg">No items found for "{searchQuery}"</p>
+          <button onClick={() => setSearchQuery('')} className="text-amber-500 text-sm mt-2 underline">Clear search</button>
+        </div>
+      )}
+
       {/* Categories */}
       <div className="space-y-10">
-        {Object.entries(groupedMenu).map(([category, items], idx) => (
-          <motion.div 
+        {Object.entries(groupedMenu).map(([category, items]) => (
+          <div 
             key={category}
             id={`category-${category}`}
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ delay: idx * 0.1 }}
             style={{ scrollMarginTop: '100px' }}
             className="chalkboard p-6 md:p-8"
           >
@@ -145,7 +200,7 @@ const Menu = ({ cart, setCart }) => {
                 </div>
               ))}
             </div>
-          </motion.div>
+          </div>
         ))}
       </div>
 
@@ -153,7 +208,6 @@ const Menu = ({ cart, setCart }) => {
       <motion.div 
         initial={{ scale: 0, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
-        // Positioned bottom right. If cart is active (cart.length > 0), raise it above the cart banner.
         className={`fixed right-6 z-40 transition-all duration-300 ${cart.length > 0 ? 'bottom-[100px]' : 'bottom-20 md:bottom-24'}`}
       >
         <button 
@@ -199,7 +253,7 @@ const Menu = ({ cart, setCart }) => {
                 </button>
               </div>
               <div className="overflow-y-auto overscroll-contain px-3 pb-20 flex-1">
-                {Object.entries(groupedMenu).map(([category, items]) => (
+                {Object.entries(allGroupedMenu).map(([category, items]) => (
                   <button
                     key={`nav-${category}`}
                     onClick={() => scrollToCategory(category)}
